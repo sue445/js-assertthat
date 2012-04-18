@@ -43,6 +43,8 @@
                 if(!isSuccess){
                     fail(message);
                 }
+            } else{
+                throw new Error("not match assertion.");
             }
         }
     }
