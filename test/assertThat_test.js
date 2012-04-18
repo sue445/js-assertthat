@@ -48,6 +48,12 @@ TestCase("assertThatTest", {
         assertNoException(function(){
             assertThat("sue445", is.startsWith("sue"));
         });
+    },
+
+    "test is.endsWith" : function(){
+        assertNoException(function(){
+            assertThat("sue445", is.endsWith("445"));
+        });
     }
 });
 

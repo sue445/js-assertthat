@@ -36,6 +36,12 @@
                     at.doAssert(at.format("starts with "+expected, actual),
                         actual.indexOf(expected) == 0);
                 };
+            },
+            endsWith : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("ends with "+expected, actual),
+                        actual.indexOf(expected) == actual.length-expected.length);
+                };
             }
         },
 
