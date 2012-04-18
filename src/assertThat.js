@@ -22,6 +22,16 @@ var at = (function(){
             return function(actual){
                 doAssert("[expected greater than or equal to " + expected + ", but actual is " + actual + "]", actual >= expected);
             };
+        },
+        lessThan : function(expected){
+            return function(actual){
+                doAssert("[expected less than " + expected + ", but actual is " + actual + "]", actual < expected);
+            };
+        },
+        lessThanOrEqualTo : function(expected){
+            return function(actual){
+                doAssert("[expected less than or equal to " + expected + ", but actual is " + actual + "]", actual <= expected);
+            };
         }
     };
 
