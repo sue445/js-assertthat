@@ -3,34 +3,38 @@
         matcher: {
             equalsTo : function(expected){
                 return function(actual){
-                    at.doAssert("expected " + expected + ", but actual is " + actual,
+                    at.doAssert(at.format(expected, actual),
                         actual == expected);
                 };
             },
             greaterThan : function(expected){
                 return function(actual){
-                    at.doAssert("[expected greater than " + expected + ", but actual is " + actual,
+                    at.doAssert(at.format("is greater than "+expected, actual),
                         actual > expected);
                 };
             },
             greaterThanOrEqualTo : function(expected){
                 return function(actual){
-                    at.doAssert("[expected greater than or equal to " + expected + ", but actual is " + actual,
+                    at.doAssert(at.format("is greater than or equal to "+expected, actual),
                         actual >= expected);
                 };
             },
             lessThan : function(expected){
                 return function(actual){
-                    at.doAssert("[expected less than " + expected + ", but actual is " + actual,
+                    at.doAssert(at.format("is less than "+expected, actual),
                         actual < expected);
                 };
             },
             lessThanOrEqualTo : function(expected){
                 return function(actual){
-                    at.doAssert("[expected less than or equal to " + expected + ", but actual is " + actual,
+                    at.doAssert(at.format("is less than or equal to "+expected, actual),
                         actual <= expected);
                 };
             }
+        },
+
+        format : function(expected, actual){
+            return "expected " + expected + ", but actual is " + actual;
         },
 
         assertThat : function(actual, matcher){
