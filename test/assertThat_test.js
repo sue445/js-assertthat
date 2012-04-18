@@ -56,7 +56,7 @@ TestCase("assertThatTest(not setup)", {
 
 TestCase("extend matcher", {
     setUp : function(){
-        is.anything = function(expected){
+        is.anything = function(){
             return function(expected){
                 // do nothing
             }
