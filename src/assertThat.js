@@ -1,10 +1,3 @@
-/**
- * Created with JetBrains WebStorm.
- * User: sue445
- * Date: 12/04/18
- * Time: 11:22
- * To change this template use File | Settings | File Templates.
- */
 var at = (function(){
     // public methods
     var matcher = {
