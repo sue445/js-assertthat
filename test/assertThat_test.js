@@ -1,4 +1,4 @@
-TestCase("assertThatTest", {
+TestCase("assertThat", {
     setUp : function(){
         this.beforeDoAssert = at.doAssert;
         at.doAssert = function(message, isSuccess){
