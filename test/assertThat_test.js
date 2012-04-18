@@ -54,6 +54,12 @@ TestCase("assertThatTest", {
         assertNoException(function(){
             assertThat("sue445", is.endsWith("445"));
         });
+    },
+
+    "test is.contains" : function(){
+        assertNoException(function(){
+            assertThat("sue445", is.contains("ue4"));
+        });
     }
 });
 
