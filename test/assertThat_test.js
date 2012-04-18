@@ -29,10 +29,4 @@ TestCase("assertThatTest", {
             assertThat(10, is.greaterThan(5));
         });
     }
-
-//    "test is.equalsTo error" : function(){
-//        assertException(function(){
-//            assertThat(10, is.equalsTo(20));
-//        });
-//    }
 });
