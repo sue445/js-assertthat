@@ -122,14 +122,26 @@
         },
 
         doAssert : function(message, isSuccess){
-            if(jstestdriver && fail){
-                // for JsTestDriver
-                if(!isSuccess){
-                    fail(message);
+            try{
+                // for QUnit
+                if(QUnit && ok){
+                    ok(isSuccess, message);
+                    return;
                 }
-            } else{
-                throw new Error("not match assertion.");
+            } catch(e){
             }
+            try{
+                // for JsTestDriver
+                if(jstestdriver && fail){
+                    if(!isSuccess){
+                        fail(message);
+                    }
+                    return;
+                }
+            } catch(e){
+            }
+
+            throw new Error("not match all assertion.");
         }
     };
 
