@@ -18,11 +18,17 @@ TestCase("assertThatTest", {
         });
     },
 
-    "test is.equalsTo success" : function(){
+    "test is.equalsTo" : function(){
         assertNoException(function(){
             assertThat(10, is.equalsTo(10));
         });
     },
+
+    "test is.greaterThan" : function(){
+        assertNoException(function(){
+            assertThat(10, is.greaterThan(5));
+        });
+    }
 
 //    "test is.equalsTo error" : function(){
 //        assertException(function(){

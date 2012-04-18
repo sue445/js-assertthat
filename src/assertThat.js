@@ -12,6 +12,11 @@ var at = (function(){
             return function(actual){
                 doAssert("[expected " + expected + ", but actual is " + actual + "]", actual == expected);
             };
+        },
+        greaterThan : function(expected){
+            return function(actual){
+                doAssert("[expected greater than " + expected + ", but actual is " + actual + "]", actual > expected);
+            };
         }
     };
 
