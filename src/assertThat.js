@@ -7,7 +7,7 @@
  */
 var at = (function(){
     // public methods
-    var is = {
+    var matcher = {
         equalsTo : function(expected){
             return function(actual){
                 doAssert("[expected " + expected + ", but actual is " + actual + "]",
@@ -49,7 +49,7 @@ var at = (function(){
     }
 
     return {
-        is : is,
+        matcher : matcher,
         assertThat : assertThat,
         setAssert : setAssert
     };
@@ -61,5 +61,5 @@ var at = (function(){
 
 }());
 
-is = at.is;
+is = at.matcher;
 assertThat = at.assertThat;
