@@ -5,14 +5,27 @@
  * Time: 11:22
  * To change this template use File | Settings | File Templates.
  */
-is = {
-    equalsTo : function(expected){
-        return function(actual){
-            assertEquals(expected, actual);
-        };
-    }
-};
+var at = (function(){
+    // public methods
+    var is = {
+        equalsTo : function(expected){
+            return function(actual){
+                assertEquals(expected, actual);
+            };
+        }
+    };
 
-assertThat = function(actual, matcher){
-    matcher(actual);
-};
+    var assertThat = function(actual, matcher){
+        matcher(actual);
+    };
+
+    return {
+        is : is,
+        assertThat : assertThat
+    };
+
+    // private methods
+}());
+
+is = at.is;
+assertThat = at.assertThat;
