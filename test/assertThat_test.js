@@ -53,3 +53,23 @@ TestCase("assertThatTest(not setup)", {
         });
     }
 });
+
+TestCase("extend matcher", {
+    setUp : function(){
+        is.anything = function(expected){
+            return function(expected){
+                // do nothing
+            }
+        };
+    },
+
+    tearDown : function(){
+        is.anything = undefined;
+    },
+
+    "test should use extend assertion" : function(){
+        assertNoException(function(){
+            assertThat(10, is.anything(100));
+        });
+    }
+});
