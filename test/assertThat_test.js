@@ -42,8 +42,13 @@ TestCase("assertThatTest", {
             assertThat(5, is.lessThanOrEqualTo(10));
             assertThat(10, is.lessThanOrEqualTo(10));
         });
-    }
+    },
 
+    "test is.startsWith" : function(){
+        assertNoException(function(){
+            assertThat("sue445", is.startsWith("sue"));
+        });
+    }
 });
 
 TestCase("assertThatTest(not setup)", {

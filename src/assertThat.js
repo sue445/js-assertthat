@@ -30,6 +30,12 @@
                     at.doAssert(at.format("is less than or equal to "+expected, actual),
                         actual <= expected);
                 };
+            },
+            startsWith : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("starts with "+expected, actual),
+                        actual.indexOf(expected) == 0);
+                };
             }
         },
 
