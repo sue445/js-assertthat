@@ -69,7 +69,7 @@
                 throw new Error("not match assertion.");
             }
         }
-    }
+    };
 
     window.at = at;
 })(window);
