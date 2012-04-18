@@ -1,13 +1,13 @@
 TestCase("assertThatTest", {
     setUp : function(){
-        at.setAssert(function(message, isSuccess){
+        this.beforeDoAssert = at.doAssert;
+        at.doAssert = function(message, isSuccess){
             assertTrue(message, isSuccess);
-        });
+        };
     },
 
     tearDown : function(){
-        at.setAssert(function(){
-        });
+        at.doAssert = this.beforeDoAssert;
     },
 
     "test is.equalsTo" : function(){
