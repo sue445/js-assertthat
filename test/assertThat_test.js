@@ -45,3 +45,11 @@ TestCase("assertThatTest", {
     }
 
 });
+
+TestCase("assertThatTest(not setup)", {
+    "test should use default assertion" : function(){
+        assertNoException(function(){
+            assertThat(10, is.equalsTo(10));
+        });
+    }
+});

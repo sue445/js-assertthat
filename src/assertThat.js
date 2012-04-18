@@ -38,7 +38,12 @@
         },
 
         doAssert : function(message, isSuccess){
-            // do nothing
+            if(jstestdriver && fail){
+                // for JsTestDriver
+                if(!isSuccess){
+                    fail(message);
+                }
+            }
         }
     }
 
