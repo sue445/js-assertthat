@@ -4,7 +4,7 @@
             equalsTo : function(expected){
                 return function(actual){
                     at.doAssert(at.format(expected, actual),
-                        actual == expected);
+                        actual === expected);
                 };
             },
             greaterThan : function(expected){
