@@ -9,25 +9,25 @@
             },
             greaterThan : function(expected){
                 return function(actual){
-                    at.doAssert("[expected greater than " + expected + ", but actual is " + actual + "]",
+                    at.doAssert("[expected greater than " + expected + ", but actual is " + actual,
                         actual > expected);
                 };
             },
             greaterThanOrEqualTo : function(expected){
                 return function(actual){
-                    at.doAssert("[expected greater than or equal to " + expected + ", but actual is " + actual + "]",
+                    at.doAssert("[expected greater than or equal to " + expected + ", but actual is " + actual,
                         actual >= expected);
                 };
             },
             lessThan : function(expected){
                 return function(actual){
-                    at.doAssert("[expected less than " + expected + ", but actual is " + actual + "]",
+                    at.doAssert("[expected less than " + expected + ", but actual is " + actual,
                         actual < expected);
                 };
             },
             lessThanOrEqualTo : function(expected){
                 return function(actual){
-                    at.doAssert("[expected less than or equal to " + expected + ", but actual is " + actual + "]",
+                    at.doAssert("[expected less than or equal to " + expected + ", but actual is " + actual,
                         actual <= expected);
                 };
             }
