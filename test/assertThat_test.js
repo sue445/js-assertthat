@@ -60,7 +60,14 @@ TestCase("assertThatTest", {
         assertNoException(function(){
             assertThat("sue445", is.contains("ue4"));
         });
+    },
+
+    "test is.equalsToIgnoringCase" : function(){
+        assertNoException(function(){
+            assertThat("sue445", is.equalsToIgnoringCase("SUe445"));
+        });
     }
+
 });
 
 TestCase("assertThatTest(not setup)", {

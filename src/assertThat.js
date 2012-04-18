@@ -48,6 +48,12 @@
                     at.doAssert(at.format("contains "+expected, actual),
                         actual.indexOf(expected) >= 0);
                 };
+            },
+            equalsToIgnoringCase : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("is equal to ignoring case "+expected, actual),
+                        actual.toLowerCase() === expected.toLowerCase());
+                };
             }
         },
 
