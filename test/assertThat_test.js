@@ -2,7 +2,9 @@ TestCase("assertThatTest", {
     setUp : function(){
         this.beforeDoAssert = at.doAssert;
         at.doAssert = function(message, isSuccess){
-            assertTrue(message, isSuccess);
+            if(!isSuccess){
+                fail(message);
+            }
         };
     },
 

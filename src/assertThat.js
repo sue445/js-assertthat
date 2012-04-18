@@ -3,7 +3,7 @@
         matcher: {
             equalsTo : function(expected){
                 return function(actual){
-                    at.doAssert("[expected " + expected + ", but actual is " + actual + "]",
+                    at.doAssert("expected " + expected + ", but actual is " + actual,
                         actual == expected);
                 };
             },
