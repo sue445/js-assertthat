@@ -10,7 +10,7 @@ var at = (function(){
     var is = {
         equalsTo : function(expected){
             return function(actual){
-                assertEquals(expected, actual);
+                doAssert("[expected " + expected + ", but actual is " + actual + "]", actual == expected);
             };
         }
     };
@@ -19,12 +19,21 @@ var at = (function(){
         matcher(actual);
     };
 
+    var setAssert = function(asserttion){
+        doAssert = asserttion;
+    }
+
     return {
         is : is,
-        assertThat : assertThat
+        assertThat : assertThat,
+        setAssert : setAssert
     };
 
     // private methods
+    var doAssert = function(message, isSuccess){
+        // do nothing
+    };
+
 }());
 
 is = at.is;
