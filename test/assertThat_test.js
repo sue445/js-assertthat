@@ -28,5 +28,12 @@ TestCase("assertThatTest", {
         assertNoException(function(){
             assertThat(15, is.greaterThan(10));
         });
+    },
+
+    "test is.greaterThanOrEqualTo" : function(){
+        assertNoException(function(){
+            assertThat(15, is.greaterThanOrEqualTo(10));
+            assertThat(10, is.greaterThanOrEqualTo(10));
+        });
     }
 });
