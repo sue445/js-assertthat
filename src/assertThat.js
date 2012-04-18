@@ -1,18 +1,152 @@
-/**
- * Created with JetBrains WebStorm.
- * User: sue445
- * Date: 12/04/18
- * Time: 11:22
- * To change this template use File | Settings | File Templates.
- */
-is = {
-    equalsTo : function(expected){
-        return function(actual){
-            assertEquals(expected, actual);
-        };
-    }
-};
+(function(window){
+    var at = {
+        matcher: {
+            equalsTo : function(expected){
+                return function(actual){
+                    at.doAssert(at.format(expected, actual),
+                        actual === expected);
+                };
+            },
+            greaterThan : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("is greater than "+expected, actual),
+                        actual > expected);
+                };
+            },
+            greaterThanOrEqualTo : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("is greater than or equal to "+expected, actual),
+                        actual >= expected);
+                };
+            },
+            lessThan : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("is less than "+expected, actual),
+                        actual < expected);
+                };
+            },
+            lessThanOrEqualTo : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("is less than or equal to "+expected, actual),
+                        actual <= expected);
+                };
+            },
+            startsWith : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("starts with "+expected, actual),
+                        actual.indexOf(expected) == 0);
+                };
+            },
+            endsWith : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("ends with "+expected, actual),
+                        actual.indexOf(expected) == actual.length-expected.length);
+                };
+            },
+            contains : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("contains "+expected, actual),
+                        actual.indexOf(expected) >= 0);
+                };
+            },
+            equalsToIgnoringCase : function(expected){
+                return function(actual){
+                    at.doAssert(at.format("is equal to ignoring case "+expected, actual),
+                        actual.toLowerCase() === expected.toLowerCase());
+                };
+            },
+            not : {
+                equalsTo : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("not " + expected, actual),
+                            actual !== expected);
+                    };
+                },
+                greaterThan : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("is not greater than "+expected, actual),
+                            !(actual > expected));
+                    };
+                },
+                greaterThanOrEqualTo : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("is not greater than or equal to "+expected, actual),
+                            !(actual >= expected));
+                    };
+                },
+                lessThan : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("is not less than "+expected, actual),
+                            !(actual < expected));
+                    };
+                },
+                lessThanOrEqualTo : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("is not less than or equal to "+expected, actual),
+                            !(actual <= expected));
+                    };
+                },
+                startsWith : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("not starts with "+expected, actual),
+                            !(actual.indexOf(expected) == 0));
+                    };
+                },
+                endsWith : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("not ends with "+expected, actual),
+                            !(actual.indexOf(expected) == actual.length-expected.length));
+                    };
+                },
+                contains : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("not contains "+expected, actual),
+                            !(actual.indexOf(expected) >= 0));
+                    };
+                },
+                equalsToIgnoringCase : function(expected){
+                    return function(actual){
+                        at.doAssert(at.format("is not equal to ignoring case "+expected, actual),
+                            !(actual.toLowerCase() === expected.toLowerCase()));
+                    };
+                }
+            }
+        },
 
-assertThat = function(actual, matcher){
-    matcher(actual);
-};
+        format : function(expected, actual){
+            return "expected " + expected + ", but actual is " + actual;
+        },
+
+        assertThat : function(actual, matcher){
+            matcher(actual);
+        },
+
+        doAssert : function(message, isSuccess){
+            try{
+                // for QUnit
+                if(QUnit && ok){
+                    ok(isSuccess, message);
+                    return;
+                }
+            } catch(e){
+            }
+            try{
+                // for JsTestDriver
+                if(jstestdriver && fail){
+                    if(!isSuccess){
+                        fail(message);
+                    }
+                    return;
+                }
+            } catch(e){
+            }
+
+            throw new Error("not match all assertion.");
+        }
+    };
+
+    window.at = at;
+})(window);
+
+is = at.matcher;
+assertThat = at.assertThat;
