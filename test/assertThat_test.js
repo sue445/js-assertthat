@@ -50,21 +50,21 @@ TestCase("assertThat", {
         });
     },
 
-    "test is.startsWith" : function(){
+    "test startsWith" : function(){
         assertNoException(function(){
-            assertThat("sue445").is.startsWith("sue");
+            assertThat("sue445").startsWith("sue");
         });
     },
 
-    "test is.endsWith" : function(){
+    "test endsWith" : function(){
         assertNoException(function(){
-            assertThat("sue445").is.endsWith("445");
+            assertThat("sue445").endsWith("445");
         });
     },
 
-    "test is.contains" : function(){
+    "test contains" : function(){
         assertNoException(function(){
-            assertThat("sue445").is.contains("ue4");
+            assertThat("sue445").contains("ue4");
         });
     },
 
@@ -130,21 +130,21 @@ TestCase("assertThat not", {
         });
     },
 
-    "test is.not.startsWith" : function(){
+    "test not.startsWith" : function(){
         assertNoException(function(){
-            assertThat("sue445").is.not.startsWith("ue");
+            assertThat("sue445").not.startsWith("ue");
         });
     },
 
-    "test is.not.endsWith" : function(){
+    "test not.endsWith" : function(){
         assertNoException(function(){
-            assertThat("sue445").is.not.endsWith("44");
+            assertThat("sue445").not.endsWith("44");
         });
     },
 
-    "test is.not.contains" : function(){
+    "test not.contains" : function(){
         assertNoException(function(){
-            assertThat("sue445").is.not.contains("uee");
+            assertThat("sue445").not.contains("uee");
         });
     },
 

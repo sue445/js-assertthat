@@ -85,7 +85,11 @@
         assertThat : function(actual_){
             actual = actual_;
             return {
-                is : at.matcher
+                is : at.matcher,
+                startsWith : at.matcher.startsWith,
+                endsWith : at.matcher.endsWith,
+                contains : at.matcher.contains,
+                not : at.matcher.not
             };
         },
 
