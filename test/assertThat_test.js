@@ -1,7 +1,10 @@
 TestCase("assertThat", {
     setUp : function(){
+        var that = this;
         this.beforeDoAssert = at.doAssert;
+        this.calledCount = 0;
         at.doAssert = function(message, isSuccess){
+            that.calledCount++;
             if(!isSuccess){
                 fail(message);
             }
@@ -10,6 +13,9 @@ TestCase("assertThat", {
 
     tearDown : function(){
         at.doAssert = this.beforeDoAssert;
+        if(this.calledCount === 0){
+            fail("assertion is not called");
+        }
     },
 
     "test is.equalsTo" : function(){
@@ -72,8 +78,11 @@ TestCase("assertThat", {
 
 TestCase("assertThat not", {
     setUp : function(){
+        var that = this;
         this.beforeDoAssert = at.doAssert;
+        this.calledCount = 0;
         at.doAssert = function(message, isSuccess){
+            that.calledCount++;
             if(!isSuccess){
                 fail(message);
             }
@@ -82,6 +91,9 @@ TestCase("assertThat not", {
 
     tearDown : function(){
         at.doAssert = this.beforeDoAssert;
+        if(this.calledCount === 0){
+            fail("assertion is not called");
+        }
     },
 
     "test is.not.equalsTo" : function(){
