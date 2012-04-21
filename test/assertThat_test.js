@@ -165,21 +165,25 @@ TestCase("assertThatTest(not setup)", {
 });
 
 TestCase("extend matcher", {
+    expectedArg : undefined,
+
     setUp : function(){
-        at.matcher.anything = function(){
-            return function(expected){
-                // do nothing
-            }
+        var that = this;
+        this.calledCount = 0;
+        at.matcher.anything = function(expected){
+            that.expectedArg = expected;
         };
     },
 
     tearDown : function(){
         at.matcher.anything = undefined;
+        this.expectedArg = undefined;
     },
 
     "test should use extend assertion" : function(){
         assertNoException(function(){
             assertThat(10).is.anything(100);
         });
+        assertEquals(100, this.expectedArg);
     }
 });
