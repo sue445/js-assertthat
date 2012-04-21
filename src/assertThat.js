@@ -1,114 +1,79 @@
 (function(window){
+    var actual;
     var at = {
         matcher: {
             equalsTo : function(expected){
-                return function(actual){
-                    at.doAssert(at.format(expected, actual),
-                        actual === expected);
-                };
+                at.doAssert(at.format(expected, actual),
+                    actual === expected);
             },
             greaterThan : function(expected){
-                return function(actual){
-                    at.doAssert(at.format("is greater than "+expected, actual),
-                        actual > expected);
-                };
+                at.doAssert(at.format("is greater than "+expected, actual),
+                    actual > expected);
             },
             greaterThanOrEqualTo : function(expected){
-                return function(actual){
-                    at.doAssert(at.format("is greater than or equal to "+expected, actual),
-                        actual >= expected);
-                };
+                at.doAssert(at.format("is greater than or equal to "+expected, actual),
+                    actual >= expected);
             },
             lessThan : function(expected){
-                return function(actual){
-                    at.doAssert(at.format("is less than "+expected, actual),
-                        actual < expected);
-                };
+                at.doAssert(at.format("is less than "+expected, actual),
+                    actual < expected);
             },
             lessThanOrEqualTo : function(expected){
-                return function(actual){
-                    at.doAssert(at.format("is less than or equal to "+expected, actual),
-                        actual <= expected);
-                };
+                at.doAssert(at.format("is less than or equal to "+expected, actual),
+                    actual <= expected);
             },
             startsWith : function(expected){
-                return function(actual){
-                    at.doAssert(at.format("starts with "+expected, actual),
-                        actual.indexOf(expected) == 0);
-                };
+                at.doAssert(at.format("starts with "+expected, actual),
+                    actual.indexOf(expected) == 0);
             },
             endsWith : function(expected){
-                return function(actual){
-                    at.doAssert(at.format("ends with "+expected, actual),
-                        actual.indexOf(expected) == actual.length-expected.length);
-                };
+                at.doAssert(at.format("ends with "+expected, actual),
+                    actual.indexOf(expected) == actual.length-expected.length);
             },
             contains : function(expected){
-                return function(actual){
-                    at.doAssert(at.format("contains "+expected, actual),
-                        actual.indexOf(expected) >= 0);
-                };
+                at.doAssert(at.format("contains "+expected, actual),
+                    actual.indexOf(expected) >= 0);
             },
             equalsToIgnoringCase : function(expected){
-                return function(actual){
-                    at.doAssert(at.format("is equal to ignoring case "+expected, actual),
-                        actual.toLowerCase() === expected.toLowerCase());
-                };
+                at.doAssert(at.format("is equal to ignoring case "+expected, actual),
+                    actual.toLowerCase() === expected.toLowerCase());
             },
             not : {
                 equalsTo : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("not " + expected, actual),
-                            actual !== expected);
-                    };
+                    at.doAssert(at.format("not " + expected, actual),
+                        actual !== expected);
                 },
                 greaterThan : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("is not greater than "+expected, actual),
-                            !(actual > expected));
-                    };
+                    at.doAssert(at.format("is not greater than "+expected, actual),
+                        !(actual > expected));
                 },
                 greaterThanOrEqualTo : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("is not greater than or equal to "+expected, actual),
-                            !(actual >= expected));
-                    };
+                    at.doAssert(at.format("is not greater than or equal to "+expected, actual),
+                        !(actual >= expected));
                 },
                 lessThan : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("is not less than "+expected, actual),
-                            !(actual < expected));
-                    };
+                    at.doAssert(at.format("is not less than "+expected, actual),
+                        !(actual < expected));
                 },
                 lessThanOrEqualTo : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("is not less than or equal to "+expected, actual),
-                            !(actual <= expected));
-                    };
+                    at.doAssert(at.format("is not less than or equal to "+expected, actual),
+                        !(actual <= expected));
                 },
                 startsWith : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("not starts with "+expected, actual),
-                            !(actual.indexOf(expected) == 0));
-                    };
+                    at.doAssert(at.format("not starts with "+expected, actual),
+                        !(actual.indexOf(expected) == 0));
                 },
                 endsWith : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("not ends with "+expected, actual),
-                            !(actual.indexOf(expected) == actual.length-expected.length));
-                    };
+                    at.doAssert(at.format("not ends with "+expected, actual),
+                        !(actual.indexOf(expected) == actual.length-expected.length));
                 },
                 contains : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("not contains "+expected, actual),
-                            !(actual.indexOf(expected) >= 0));
-                    };
+                    at.doAssert(at.format("not contains "+expected, actual),
+                        !(actual.indexOf(expected) >= 0));
                 },
                 equalsToIgnoringCase : function(expected){
-                    return function(actual){
-                        at.doAssert(at.format("is not equal to ignoring case "+expected, actual),
-                            !(actual.toLowerCase() === expected.toLowerCase()));
-                    };
+                    at.doAssert(at.format("is not equal to ignoring case "+expected, actual),
+                        !(actual.toLowerCase() === expected.toLowerCase()));
                 }
             }
         },
@@ -117,8 +82,15 @@
             return "expected " + expected + ", but actual is " + actual;
         },
 
-        assertThat : function(actual, matcher){
-            matcher(actual);
+        assertThat : function(actual_){
+            actual = actual_;
+            return {
+                is : at.matcher,
+                startsWith : at.matcher.startsWith,
+                endsWith : at.matcher.endsWith,
+                contains : at.matcher.contains,
+                not : at.matcher.not
+            };
         },
 
         doAssert : function(message, isSuccess){
@@ -148,5 +120,4 @@
     window.at = at;
 })(window);
 
-is = at.matcher;
 assertThat = at.assertThat;
